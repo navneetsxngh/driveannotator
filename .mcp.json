@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "colab-mcp": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "git+https://github.com/googlecolab/colab-mcp@b9ab3899e0f1fa493390b1fd6d54aa2e464ecdf1",
+        "-l",
+        "C:/Users/Lenovo/Desktop/Project/driving_annotation_starter/.uv/logs"
+      ],
+      "env": {
+        "UV_CACHE_DIR": "C:/Users/Lenovo/Desktop/Project/driving_annotation_starter/.uv/cache",
+        "UV_PYTHON_INSTALL_DIR": "C:/Users/Lenovo/Desktop/Project/driving_annotation_starter/.uv/python"
+      }
+    }
+  }
+}
