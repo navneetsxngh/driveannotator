@@ -2,6 +2,17 @@
 
 **Teach NVIDIA's self-driving model `Alpamayo2-Edge` to label driving scenes from its cameras.**
 
+[![NVIDIA Alpamayo2-Edge](https://img.shields.io/badge/NVIDIA-Alpamayo2--Edge-76B900?logo=nvidia&logoColor=white)](https://huggingface.co/nvidia/Alpamayo2-Edge)
+[![NVIDIA PhysicalAI-AV](https://img.shields.io/badge/NVIDIA-PhysicalAI--AV%20dataset-76B900?logo=nvidia&logoColor=white)](https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles)
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Transformers](https://img.shields.io/badge/Transformers-5.17-FFD21E?logo=huggingface&logoColor=black)](https://github.com/huggingface/transformers)
+[![PEFT LoRA](https://img.shields.io/badge/PEFT-LoRA-FFD21E?logo=huggingface&logoColor=black)](https://github.com/huggingface/peft)
+[![Google Colab](https://img.shields.io/badge/Colab-A100-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Colab%20MCP-D97757?logo=anthropic&logoColor=white)](https://claude.com/claude-code)
+[![License](https://img.shields.io/badge/License-Apache--2.0-blue)](LICENSE)
+
 This README explains the whole project from start to finish.
 You do not need to know anything about machine learning to follow it.
 
@@ -201,7 +212,7 @@ jupyter lab                     then run 01_build_dataset.ipynb from top to bott
 
 1. Upload `data/dataset_v1/` to Google Drive at `MyDrive/drive_annotator/dataset_v1`.
 2. Open `02_train_lora.ipynb` in Colab and choose **Runtime → Change runtime type → A100 GPU**.
-3. In the 🔑 Secrets panel add `HF_TOKEN` (Read token). For the upload step also add `HF_WRITE_TOKEN` (Write token).
+3. In the Secrets panel (key icon on the left) add `HF_TOKEN` (Read token). For the upload step also add `HF_WRITE_TOKEN` (Write token).
 4. Run the cells from top to bottom.
 5. When finished: **Runtime → Disconnect and delete runtime**.
 
@@ -243,7 +254,7 @@ python dev/test_train_notebook.py 02_train_lora.ipynb
 
 | What | Where | Visibility | Why |
 |---|---|---|---|
-| Code, notebooks (no outputs), README | GitHub: `navneetsxngh/-driveannotator` | Public | Contains no NVIDIA data and no scores |
+| Code, notebooks (no outputs), README | GitHub: `navneetsxngh/driveannotator` | Public | Contains no NVIDIA data and no scores |
 | LoRA adapter + model card | `<your-username>/alpamayo2-edge-driveannotator-lora` | **Private** | Trained on NVIDIA's dataset, whose license limits sharing |
 | Code only (notebooks + `dev/`) | `<your-username>/driveannotator-recipe` | Public | Contains no NVIDIA data, so others can rebuild with their own access |
 | The dataset itself | — | **Not uploaded** | The NVIDIA license (§4.6) does not allow hosting or sharing it |
