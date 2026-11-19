@@ -698,6 +698,8 @@ If everything works, the model should almost memorize them (loss below 0.3).
 If it does not, something is broken, and the cell stops here.
 
 Afterwards the adapter is reset, so this check does not affect the real training.
+
+If you are coming back to a run that already started (the folder `last/` exists on Drive), you can skip this step.
 ''')
 
 code(r'''
@@ -789,7 +791,9 @@ How it works:
 
 Progress is saved to Google Drive (`last/`).
 
-Run Steps 1–9 and Step 11 again, then run this cell. It continues where it stopped.
+Run Steps 1–12 and Step 14 again (skip Step 13), then run this cell. It continues where it stopped.
+
+If training had already finished, the cell does not train again. It loads the saved progress and prints the full training log.
 
 ### How to read the log
 
@@ -898,8 +902,16 @@ for epoch in range(state["epoch"], CFG.EPOCHS):
     save_checkpoint("last", optimizer, scheduler, state)
 
 pd.DataFrame(state["history"]).to_csv(OUT / "history.csv", index=False)
-print(f"Done: {state['step']} updates in {(time.time() - run_start) / 3600:.2f} h | "
-      f"best val loss {state['best_val']:.3f} at update {state['best_step']}")
+print(f"Done: {state['step']} updates | best val loss {state['best_val']:.3f} at update {state['best_step']}")
+
+# Full training log, read from the saved progress (also works after a disconnect)
+print("\nValidation checks:")
+for h in state["history"]:
+    train = f"train loss {h['train_loss']:.3f} | " if "train_loss" in h else ""
+    print(f"  update {h['step']:3d} | {train}val loss {h['val_loss']:.3f}")
+print("\nValidation scores after each epoch:")
+for s in state["val_scores"]:
+    print("  " + " | ".join(f"{k} {v}" for k, v in s.items()))
 ''')
 
 # ---------------------------------------------------------------------------
